@@ -61,17 +61,17 @@ jobs:
         file: dev/build/Dockerfile
         push: true
         tags: |
-          requarks/wiki:canary
-          requarks/wiki:canary-${{ env.REL_VERSION_STRICT }}
-          ghcr.io/requarks/wiki:canary
-          ghcr.io/requarks/wiki:canary-${{ env.REL_VERSION_STRICT }}
+          warpten/wikijs:canary
+          warpten/wikijs:canary-${{ env.REL_VERSION_STRICT }}
+          ghcr.io/warpten/wikijs:canary
+          ghcr.io/warpten/wikijs:canary-${{ env.REL_VERSION_STRICT }}
 
     - name: Extract compiled files
       run: |
         mkdir -p _dist
-        docker create --name wiki ghcr.io/requarks/wiki:canary-$REL_VERSION_STRICT
-        docker cp wiki:/wiki _dist
-        docker rm wiki
+        docker create --name wikijs ghcr.io/warpten/wikijs:canary-$REL_VERSION_STRICT
+        docker cp wikijs:/wiki _dist
+        docker rm wikijs
         rm _dist/wiki/config.yml
         cp ./config.sample.yml _dist/wiki/config.sample.yml
         find _dist/wiki/ -printf "%P\n" | tar -czf wiki-js.tar.gz --no-recursion -C _dist/wiki/ -T -
@@ -180,8 +180,8 @@ jobs:
         provenance: false
         push: true
         tags: |
-          requarks/wiki:canary-${{ matrix.docker }}-${{ env.REL_VERSION_STRICT }}
-          ghcr.io/requarks/wiki:canary-${{ matrix.docker }}-${{ env.REL_VERSION_STRICT }}
+          warpten/wikijs:canary-${{ matrix.docker }}-${{ env.REL_VERSION_STRICT }}
+          ghcr.io/warpten/wikijs:canary-${{ matrix.docker }}-${{ env.REL_VERSION_STRICT }}
 
   windows:
     name: Windows Build
@@ -257,7 +257,7 @@ jobs:
       run: |
         echo "Creating the manifests..."
 
-        docker manifest create requarks/wiki:beta-$REL_VERSION_STRICT requarks/wiki:canary-$REL_VERSION_STRICT requarks/wiki:canary-arm64-$REL_VERSION_STRICT requarks/wiki:canary-armv7-$REL_VERSION_STRICT
+        docker manifest create warpten/wikijs:beta-$REL_VERSION_STRICT requarks/wiki:canary-$REL_VERSION_STRICT requarks/wiki:canary-arm64-$REL_VERSION_STRICT requarks/wiki:canary-armv7-$REL_VERSION_STRICT
         docker manifest create ghcr.io/requarks/wiki:beta-$REL_VERSION_STRICT ghcr.io/requarks/wiki:canary-$REL_VERSION_STRICT ghcr.io/requarks/wiki:canary-arm64-$REL_VERSION_STRICT ghcr.io/requarks/wiki:canary-armv7-$REL_VERSION_STRICT
 
         echo "Pushing the manifests..."
