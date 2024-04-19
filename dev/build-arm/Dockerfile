@@ -36,17 +36,6 @@ RUN apk add bash curl git openssh gnupg sqlite --no-cache && \
 
 WORKDIR /wiki
 
-
-
-# =========================
-# --- BUILD NPM MODULES ---
-# =========================
-FROM node:18-alpine AS build
-
-RUN apk add yarn g++ make cmake python3 --no-cache
-
-WORKDIR /wiki
-
 COPY --chown=node:node ./build/assets ./assets
 COPY --chown=node:node --from=build /wiki/node_modules ./node_modules
 COPY --chown=node:node ./server ./server
