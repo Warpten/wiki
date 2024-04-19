@@ -10,7 +10,11 @@ WORKDIR /wiki
 COPY ./package.json ./package.json
 COPY ./patches ./patches
 
-RUN yarn --production --frozen-lockfile --non-interactive --network-timeout 100000
+RUN yarn cache clean
+RUN yarn --frozen-lockfile --non-interactive
+RUN yarn build
+RUN rm -rf /wiki/node_modules
+RUN yarn --production --frozen-lockfile --non-interactive
 RUN yarn patch-package
 
 # ===============
