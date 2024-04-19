@@ -26,7 +26,7 @@ RUN yarn patch-package
 # --- Release ---
 # ===============
 FROM node:18-alpine
-LABEL maintainer="requarks.io"
+LABEL maintainer="warpten"
 
 RUN apk add bash curl git openssh gnupg sqlite --no-cache && \
     mkdir -p /wiki && \
