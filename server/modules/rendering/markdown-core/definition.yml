@@ -34,19 +34,26 @@ props:
     hint: Enable text underlining by using _underline_ syntax.
     order: 4
     public: true
+  fenceInline:
+    type: Boolean
+    default: false
+    title: Inline Markdown within fence blocks
+    hint: Enable inline markdown within fence blocks.
+    order: 5
+    public: true
   typographer:
     type: Boolean
     default: false
     title: Typographer
     hint: Enable some language-neutral replacement + quotes beautification.
-    order: 5
+    order: 6
     public: true
   quotes:
     type: String
     default: English
     title: Quotes style
     hint: When typographer is enabled. Double + single quotes replacement pairs. e.g. «»„“ for Russian, „“‚‘ for German, etc.
-    order: 6
+    order: 7
     enum:
       - Chinese
       - English
