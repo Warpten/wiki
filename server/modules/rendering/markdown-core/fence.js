@@ -17,6 +17,4 @@ module.exports = (md) => {
 
     return result
   }
-
-  md.
 }
