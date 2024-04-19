@@ -212,6 +212,7 @@ import mdFootnote from 'markdown-it-footnote'
 import mdImsize from 'markdown-it-imsize'
 import katex from 'katex'
 import underline from '../../libs/markdown-it-underline'
+import fence from '../../libs/markdown-it-fence'
 import 'katex/dist/contrib/mhchem'
 import twemoji from 'twemoji'
 import plantuml from './markdown/plantuml'
@@ -266,6 +267,7 @@ const md = new MarkdownIt({
   })
   .use(mdDecorate)
   .use(underline)
+  .use(fence)
   .use(mdEmoji)
   .use(mdTaskLists, { label: false, labelAfter: false })
   .use(mdExpandTabs)
