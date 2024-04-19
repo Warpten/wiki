@@ -3,6 +3,7 @@ const mdAttrs = require('markdown-it-attrs')
 const mdDecorate = require('markdown-it-decorate')
 const _ = require('lodash')
 const underline = require('./underline')
+const fenceInline = require('./fence')
 
 const quoteStyles = {
   Chinese: '””‘’',
@@ -38,6 +39,10 @@ module.exports = {
 
     if (this.config.underline) {
       mkdown.use(underline)
+    }
+
+    if (this.config.fenceInline) {
+      mkdown.use(fenceInline)
     }
 
     mkdown.use(mdAttrs, {
